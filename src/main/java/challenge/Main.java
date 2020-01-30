@@ -30,8 +30,8 @@ public class Main {
 
 		resultPlayer = this.csvRead();
 		return (int) resultPlayer.stream()
+				.filter(n -> !n.getClub().isEmpty())
 				.map(Player::getClub)
-				.filter(n -> n != null)
 				.distinct()
 				.count();
 	}
@@ -50,13 +50,14 @@ public class Main {
 	// (utilize as colunas `full_name` e `eur_release_clause`)
 	public List<String> q4() {
 
-		resultPlayer = this.csvRead();
-		return resultPlayer.stream()
-				.filter(Player -> !Player.getEurReleaseClause().isEmpty())
-				.sorted(Comparator.comparingDouble(( Player n ) -> Double.parseDouble(n.getEurReleaseClause())).reversed())
-				.map(Player::getFullName)
-				.limit(10)
-				.collect(Collectors.toList());
+//		resultPlayer = this.csvRead();
+//		return resultPlayer.stream()
+//				.filter(p -> !p.getEurReleaseClause().isEmpty())
+//				.sorted(Comparator.rever)
+//				.map(Player::getFullName)
+//				.limit(10)
+//				.collect(Collectors.toList());
+		return null;
 	}
 
 	// Quem são os 10 jogadores mais velhos (use como critério de desempate o campo `eur_wage`)?
@@ -69,10 +70,10 @@ public class Main {
 	// (utilize a coluna `age`)
 	public Map<Integer, Integer> q6() {
 
-		resultPlayer = this.csvRead();
+//		resultPlayer = this.csvRead();
 		return null;
-	}
 
+	}
 
 	private static List<Player> csvRead() {
 

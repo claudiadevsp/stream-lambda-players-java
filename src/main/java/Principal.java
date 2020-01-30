@@ -12,6 +12,6 @@ public class Principal {
         System.out.println(principal.q1());
         System.out.println(principal.q2());
         System.out.println(principal.q3());
-        System.out.println(principal.q4());
+//        System.out.println(principal.q4());
     }
 }
