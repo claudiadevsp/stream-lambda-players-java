@@ -8,11 +8,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import static java.util.stream.Collectors.toList;
 
 public class Main {
-
-	List<Player> resultPlayer = new ArrayList<>();
 
 	// Quantas nacionalidades (coluna `nationality`) diferentes existem no arquivo?
 	public int q1() {
@@ -49,7 +46,7 @@ public class Main {
 
 		return this.csvRead().stream()
 				.filter(p -> !p.getEurReleaseClause().isEmpty())
-				.sorted(Comparator.comparing(Player::getEurReleaseClause))
+				.sorted(Comparator.comparingDouble((Player j) -> Double.parseDouble(j.getEurReleaseClause())).reversed())
 				.map(Player::getFullName)
 				.limit(10)
 				.collect(Collectors.toList());
@@ -91,7 +88,7 @@ public class Main {
 
 		try {
 
-			BufferedReader bufferedReader = new BufferedReader((new FileReader("/home/claudiasilva/codenation/java-3/src/main/resources/data.csv")));
+			BufferedReader bufferedReader = new BufferedReader((new FileReader("/home/mixirica/codenation/java-3/src/main/resources/data.csv")));
 			bufferedReader.readLine();
 
 			while( (lineFile = bufferedReader.readLine()) != null ) {
@@ -109,7 +106,7 @@ public class Main {
 					addPlayer.setBirthDate(player[8]);
 					addPlayer.setNationality(player[14]);
 					addPlayer.setEurWage(player[17]);
-					addPlayer.setEurWage(player[18]);
+					addPlayer.setEurReleaseClause(player[18]);
 					listPlayer.add(addPlayer);
 				}
 			}
@@ -117,7 +114,6 @@ public class Main {
 		} catch(IOException e) {
 			e.getMessage();
 		}
-
 		return listPlayer;
 	}
 }
